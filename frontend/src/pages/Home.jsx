@@ -7,7 +7,7 @@ import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md'
 import BooksTable from '../components/home/BooksTable'
 import BooksCard from '../components/home/BooksCard'
-
+import { baseURL } from '../main';
 
 const Home = () => {
     const [books, setBooks] = useState([])
@@ -15,7 +15,7 @@ const Home = () => {
     const [showType, setShowType] = useState(false)
     useEffect(() => { //runs this function after rendering
         setLoading(true);
-        axios.get('http://localhost:5555/books')
+        axios.get(`${baseURL}/books`)
             .then((res) => {
                 setBooks(res.data.data)
                 setLoading(false)

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useSnackbar } from 'notistack'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
+import { baseURL } from '../main';
 
 const EditBook = () => {
   const [title, setTitle] = useState('')
@@ -16,7 +17,7 @@ const EditBook = () => {
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`http://localhost:5555/books/${id}`)
+    axios.get(`${baseURL}/books/${id}`)
     .then((res) => {
       setAuthor(res.data.author)
       setPublishYear(res.data.publishYear)

@@ -1,7 +1,10 @@
+if (process.env.NODE_ENV !== 'production'){ //check if app is running on prod
+    require('dotenv').config()
+}
+
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const {PORT, mongoDBURL} = require('./config')
 
 const app = express()
 
@@ -29,12 +32,10 @@ app.get('/', (req, res) => {
 
 app.use('/books', bookRoutes)
 
-mongoose.connect(mongoDBURL) //connects to mongodb
+mongoose.connect(process.env.DATABASE_URL) //connects to mongodb
     .then(() => {
         console.log('Connected to database')
-        app.listen(PORT, () => {
-            console.log(`listening on port: ${PORT}`)
-        })
+        app.listen(process.env.PORT || 5555)
     })
     .catch((err) => {
         console.log(err)
