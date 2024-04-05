@@ -38,7 +38,7 @@ const EditBook = () => {
       publishYear
     }
     setLoading(true)
-    axios.put(`http://localhost:5555/books/${id}`, data)
+    axios.put(`${baseURL}/books/${id}`, data)
     .then(() => {
       setLoading(false)
       enqueueSnackbar('Book Updated Successfuly', {variant: 'success'})
